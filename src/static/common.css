@@ -1,0 +1,153 @@
+$INCLUDE_ONLY NOCOPY
+$INCLUDE static/lib/normalize.min.css
+
+/* common.css */
+/* app setup */
+:root {
+    --theme: #0E419C;
+    --footer: #001733;
+}
+#app[v-cloak] {
+    display: none;
+}
+body {
+    overflow-y: scroll;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+/* element styles */
+a {
+    color: var(--theme);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+pre {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    overflow: auto;
+    background-color: #eee;
+}
+p code {
+    margin: 0 0.5em;
+    padding: 0.1em;
+    border-radius: 2px;
+    background-color: #eee;
+}
+button {
+    cursor: pointer;
+    user-select: none;
+    padding: 0.5em 1em;
+    border: none;
+    background-color: var(--theme);
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    line-height: 2em;
+    text-align: left;
+}
+table tr {
+    vertical-align: top;
+}
+table tr >* {
+    padding: 0 0.5em;
+}
+table tr td a {
+    padding: 0;
+}
+table th {
+    border-bottom: var(--theme) solid 2px;
+}
+table td {
+    border-bottom: #ccc solid 1px;
+}
+table tbody tr:hover {
+    background-color: #eee;
+}
+
+/* layout */
+header,
+main,
+footer {
+    padding: 1em 20% 2em;
+}
+header {
+    color: white;
+    background-color: var(--theme);
+}
+header>* {
+    display: flex;
+    align-items: center;
+}
+header nav {
+    flex-direction: row-reverse;
+}
+header nav a {
+    margin: 0 1em;
+    color: white;
+}
+header img {
+    width: 3em;
+    margin-right: 1.5em;
+    filter: brightness(100);
+}
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #999;
+    background-color: var(--footer);
+}
+footer #legal {
+    flex-shrink: 99999;
+}
+footer #logo {
+    flex-basis: 14em;
+    text-align: center;
+}
+
+@media screen and (max-width: 1920px) {
+    header,
+    main,
+    footer {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    header,
+    main,
+    footer {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+@media screen and (max-width: 768px) {
+    header,
+    main,
+    footer {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    header h1 {
+        font-size: 1.5em;
+        line-height: 1.5;
+    }
+}
+@media screen and (max-width: 568px) {
+    header,
+    main,
+    footer {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    header img {
+        display: none;
+    }
+    footer {
+        flex-wrap: wrap;
+    }
+}

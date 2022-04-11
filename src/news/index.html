@@ -1,0 +1,22 @@
+$DEFINE PAGE news
+$INCLUDE header.html
+<main v-if="current" v-html="content">
+</main>
+<main id="list" v-if="!current">
+    <h2>{{ _.news }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ _.tableTitle }}</th>
+                <th>{{ _.tableDate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="post in news">
+                <td><a :href="'#'+post.name">{{ post.text }}</a></td>
+                <td>{{ post.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+$INCLUDE footer.html

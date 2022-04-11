@@ -1,0 +1,29 @@
+$INCLUDE_ONLY NOCOPY
+$REQUIRE static/$PAGE.css
+<!DOCTYPE html>
+<html>
+<!--
+    Designed by TechCiel
+    Copyright 2022-present Jilin University Linux User Group
+    Licensed under AGPLv3
+    GitHub: JLULUG/mirrors-web
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Jilin University Open-source Mirrors</title>
+    $VAR <link rel="shortcut icon" type="image/svg" href="$BASE/static/logo.svg">
+    $VAR <link rel="stylesheet" href="$BASE/static/$PAGE.css?r=$RND">
+</head>
+<body>
+    <div id="app" v-cloak>
+        <header>
+            <nav>
+                <a @click="switchLang">中文 / English</a>
+                $VAR <a id="back" href="$BASE/">{{ _.back }}</a>
+            </nav>
+            <div>
+                $VAR <img src="$BASE/static/logo.svg">
+                <h1 v-html="_.titleH1"></h1>
+            </div>
+        </header>

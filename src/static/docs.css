@@ -1,0 +1,45 @@
+$INCLUDE_ONLY
+$INCLUDE static/common.css
+
+/* docs.css */
+main {
+    display: flex;
+}
+main >div {
+    flex: 4 80%;
+    overflow-x: auto;
+}
+main >ul {
+    flex: 1 20%;
+    margin: 0 2em 0 0;
+    padding: 0;
+    list-style: none;
+}
+main >ul li {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+main >ul li a {
+    display: block;
+    padding: 0.5em 1em;
+}
+main >ul li a:active,
+main >ul li.active,
+main >ul li a:hover {
+    border-radius: 0.3em;
+    background-color: #eee;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1920px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 568px) {
+    main {
+        flex-wrap: wrap-reverse;
+    }
+}
