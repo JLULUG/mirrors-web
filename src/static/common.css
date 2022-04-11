@@ -25,15 +25,19 @@ a:hover {
 }
 pre {
     padding: 0.5em;
+    border: 1px solid #ddd;
     border-radius: 0.5em;
     overflow: auto;
     background-color: #eee;
 }
 p code {
-    margin: 0 0.5em;
+    display: inline-block;
     padding: 0.1em;
+    border: 1px solid #ddd;
     border-radius: 2px;
+    vertical-align: middle;
     background-color: #eee;
+    font-size: 0.8em;
 }
 button {
     cursor: pointer;

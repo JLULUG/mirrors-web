@@ -19,7 +19,7 @@ $REQUIRE static/$PAGE.css
     <div id="app" v-cloak>
         <header>
             <nav>
-                <a @click="switchLang">中文 / English</a>
+                <a @click.prevent="switchLang" href="#">中文 / English</a>
                 $VAR <a id="back" href="$BASE/">{{ _.back }}</a>
             </nav>
             <div>

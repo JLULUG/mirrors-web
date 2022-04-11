@@ -84,6 +84,7 @@ main aside p {
 #modal #modalClose {
     float: right;
     font-size: 2em;
+    cursor: pointer;
 }
 #modal >div {
     display: flex;
