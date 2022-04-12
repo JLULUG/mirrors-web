@@ -20,6 +20,7 @@ app = { // inject option object for i18n
         switchLang: function (change = true) {
             if (change) this.lang = this.lang == 'en' ? 'zh' : 'en'
             localStorage.lang = this.lang
+            document.documentElement.setAttribute('lang', this.lang)
             document.title = this._.title
             if (this._switchLang) this._switchLang(change)
         },
