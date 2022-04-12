@@ -28,7 +28,7 @@ main >ul li a:active,
 main >ul li.active,
 main >ul li a:hover {
     border-radius: 0.3em;
-    background-color: #eee;
+    background-color: #bbb5;
     text-decoration: none;
 }
 
@@ -39,6 +39,11 @@ main >ul li a:hover {
 @media screen and (max-width: 768px) {
 }
 @media screen and (max-width: 568px) {
+    main {
+        flex-wrap: wrap-reverse;
+    }
+}
+@media print {
     main {
         flex-wrap: wrap-reverse;
     }

@@ -17,3 +17,5 @@ main#list table tr :nth-child(2) {
 }
 @media screen and (max-width: 568px) {
 }
+@media print {
+}

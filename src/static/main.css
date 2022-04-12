@@ -16,20 +16,17 @@ main table {
     white-space: nowrap;
 }
 main table td:nth-child(1) {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
     font-weight: 700;
 }
-main table tbody tr:hover {
-    background-color: #eee;
-}
 main table tbody tr.syncing {
-    background-color: #d3eff8;
+    background-color: hsla(194deg 70% 70% / 33%);
 }
 main table tbody tr.failed {
-    background-color: #f4d7d7;
+    background-color: hsla(0deg 57% 70% / 33%);
 }
 main table tbody tr.unknown {
-    background-color: #fbe5d0;
+    background-color: hsla(29deg 84% 70% / 33%);
 }
 main table tbody tr svg {
     width: 1em;
@@ -41,16 +38,16 @@ main table tbody tr svg.badge {
     fill: orange;
 }
 main table tbody tr svg.help {
-    fill: var(--theme);
+    fill: var(--theme-link);
 }
 main table tbody tr svg.failed {
-    fill: #ca3c3c;
+    fill: hsl(0deg 57% 50%);
 }
 main table tbody tr svg.unknown {
-    fill: #df7514;
+    fill: hsl(29deg 84% 50%);
 }
 main table tbody tr svg.syncing {
-    fill: #42b8dd;
+    fill: hsl(194deg 70% 50%);
     animation: rotate 2s linear infinite;
 }
 @keyframes rotate {
@@ -68,7 +65,7 @@ main aside h3 {
     margin: 1em 0 0.5em;
 }
 main aside p {
-    margin: 0.5em 0;
+    margin: 0.8em 0 0.5em;
 }
 
 #modal {
@@ -91,7 +88,8 @@ main aside p {
     width: 50%;
     margin: 5% auto;
     padding: 2em;
-    background-color: white;
+    color: var(--fg);
+    background-color: var(--bg);
     box-shadow: 5px 5px 1em #0006;
 }
 #modal >div >div {
@@ -118,7 +116,7 @@ main aside p {
 #modal ul li.active,
 #modal ul li a:hover {
     border-radius: 0.3em;
-    background-color: #eee;
+    background-color: #bbb5;
     text-decoration: none;
 }
 
@@ -144,5 +142,19 @@ main aside p {
     }
     #modal >div {
         width: 85%;
+    }
+}
+@media print {
+    main {
+        flex-wrap: wrap;
+    }
+    main aside {
+        margin-top: 0.5em;
+        margin-left: 0;
+    }
+    main table tbody tr.syncing,
+    main table tbody tr.failed,
+    main table tbody tr.unknown {
+        background-color: transparent;
     }
 }
