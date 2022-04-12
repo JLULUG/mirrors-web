@@ -11,7 +11,9 @@ $REQUIRE static/$PAGE.css
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Jilin University Open-source Mirrors</title>
+    <title>吉林大学开源镜像站</title>
+    <meta name="description" lang="zh" content="吉林大学开源镜像站，致力于提供高速稳定的 Linux 发行版软件源和自由软件镜像，促进自由和开源软件的使用。本站由吉林大学 Linux 用户协会负责运行维护。">
+    <meta name="description" lang="en" content="Jilin University Open-source Mirrors aims to provide stable high-speed mirrors of Linux distros and free softwares, promoting the usage of free and open-source softwares. This service is maintained by Jilin University Linux User Group.">
     $VAR <link rel="shortcut icon" type="image/svg" href="$BASE/static/logo.svg">
     $VAR <link rel="stylesheet" href="$BASE/static/$PAGE.css?r=$RND">
 </head>
@@ -23,7 +25,7 @@ $REQUIRE static/$PAGE.css
                 $VAR <a id="back" href="$BASE/">{{ _.back }}</a>
             </nav>
             <div>
-                $VAR <img src="$BASE/static/logo.svg">
+                $VAR <img @click="location.href='$BASE'" src="$BASE/static/logo.svg" :alt="_.logoAlt">
                 <h1 v-html="_.titleH1"></h1>
             </div>
         </header>
