@@ -87,6 +87,14 @@ table tbody tr:hover {
 }
 
 /* layout */
+#app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex-grow: 99999;
+}
 header,
 main,
 footer {
