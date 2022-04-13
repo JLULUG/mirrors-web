@@ -4,6 +4,8 @@ $INCLUDE docs/index.js
 $INCLUDE news/index.js
 
 /* main.js */
+if (typeof distros === 'undefined') var distros = []
+
 var app = {
     el: '#app',
     data: {

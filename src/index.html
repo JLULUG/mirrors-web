@@ -68,9 +68,11 @@ $INCLUDE header.html
             $VAR <a :href="'$BASE/news/#'+post.name">{{ post.text }} ({{ post.date }})</a>
         </p>
         $VAR <p v-if="news.length>3"><a href="$BASE/news/">{{ _.newsMore}}</a></p>
-        <h3>{{ _.distros }}</h3>
-        <p>{{ _.distroDesc }}</p>
-        <button @click="modal=true">{{ _.distroButton }}</button>
+        <div v-if="distros.length">
+            <h3>{{ _.distros }}</h3>
+            <p>{{ _.distroDesc }}</p>
+            <button @click="modal=true">{{ _.distroButton }}</button>
+        </div>
         <h3>{{ _.routes }}</h3>
         <table>
             <tr>
