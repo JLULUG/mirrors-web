@@ -63,11 +63,13 @@ $INCLUDE header.html
         </table>
     </div>
     <aside>
-        <h3>{{ _.news }}</h3>
-        <p v-for="post in news.slice(0,3)">
-            $VAR <a :href="'$BASE/news/#'+post.name">{{ post.text }} ({{ post.date }})</a>
-        </p>
-        $VAR <p v-if="news.length>3"><a href="$BASE/news/">{{ _.newsMore}}</a></p>
+        <div v-if="news.length">
+            <h3>{{ _.news }}</h3>
+            <p v-for="post in news.slice(0,3)">
+                $VAR <a :href="'$BASE/news/#'+post.name">{{ post.text }} ({{ post.date }})</a>
+            </p>
+            $VAR <p v-if="news.length>3"><a href="$BASE/news/">{{ _.newsMore}}</a></p>
+        </div>
         <div v-if="distros.length">
             <h3>{{ _.distros }}</h3>
             <p>{{ _.distroDesc }}</p>
