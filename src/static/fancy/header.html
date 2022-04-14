@@ -1,4 +1,25 @@
 $DEFINE PAGE fancy
 $INCLUDE header.html
+<noscript>
+    <style>
+        #app[v-cloak] {
+            display: flex;
+        }
+        header nav {
+            display: none;
+        }
+        noscript pre {
+            text-align: center;
+            background-color: hsl(0deg 80% 73% / 33%);
+            white-space: pre-wrap;
+            border: none;
+            border-radius: 0;
+        }
+    </style>
+    <pre>
+You are visiting the noscript version of our website, advanced features will be limited.
+Please enable JavaScript and refresh this page.
+</pre>
+</noscript>
 <main>
     <h2><span v-html="_.youAreAt">You are at</span>
