@@ -4,7 +4,6 @@ $INCLUDE docs/index.js
 $INCLUDE news/index.js
 
 /* main.js */
-if (typeof distros === 'undefined') var distros = []
 
 var app = {
     data: {
@@ -13,8 +12,8 @@ var app = {
         docsAll: docs,
         news: news,
         modal: false,
-        distros: distros,
-        current: distros[0],
+        distros: typeof distros === 'undefined' ? [] : distros,
+        current: {},
     },
     computed: {
         docs: function () { return this.docsAll[this.lang] },
