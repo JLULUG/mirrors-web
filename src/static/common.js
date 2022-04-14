@@ -1,8 +1,10 @@
 $INCLUDE_ONLY NOCOPY
 $INCLUDE static/lib/vue.min.js
-$INCLUDE static/i18n/$PAGE.js
 
 /* common.js */
+if (!localStorage.lang) localStorage.lang = navigator.language.slice(0, 2)
+if (!(localStorage.lang in i18n)) localStorage.lang = 'en'
+
 app = { // inject option object for i18n
     ...app,
     el: '#app',
