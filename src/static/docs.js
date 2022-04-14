@@ -5,7 +5,6 @@ $INCLUDE docs/index.js
 
 /* docs.js */
 var app = {
-    el: '#app',
     data: {
         docsAll: docs,
         current: location.hash.slice(1),

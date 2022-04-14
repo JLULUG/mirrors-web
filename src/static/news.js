@@ -4,7 +4,6 @@ $INCLUDE static/lib/marked.min.js
 $INCLUDE news/index.js
 
 var app = {
-    el: '#app',
     data: {
         news: news,
         current: '',

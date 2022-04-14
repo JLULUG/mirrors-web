@@ -7,7 +7,6 @@ $INCLUDE news/index.js
 if (typeof distros === 'undefined') var distros = []
 
 var app = {
-    el: '#app',
     data: {
         mirrors: [],
         relOrAbs: {},

@@ -5,6 +5,7 @@ $INCLUDE static/i18n/$PAGE.js
 /* common.js */
 app = { // inject option object for i18n
     ...app,
+    el: '#app',
     data: {
         ...app.data,
         lang: localStorage.lang,
@@ -16,7 +17,7 @@ app = { // inject option object for i18n
     },
     methods: {
         ...app.methods,
-        _switchLang: app.methods.switchLang,
+        _switchLang: typeof app.methods === 'undefined' ? undefined : app.methods.switchLang,
         switchLang: function (change = true) {
             if (change) this.lang = this.lang == 'en' ? 'zh' : 'en'
             localStorage.lang = this.lang
