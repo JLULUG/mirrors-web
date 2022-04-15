@@ -17,7 +17,7 @@ $REQUIRE static/$PAGE.css
     $VAR <link rel="shortcut icon" type="image/svg" href="$BASE/static/logo.svg">
     $VAR <link rel="stylesheet" href="$BASE/static/$PAGE.css?r=$RND">
     <noscript>
-        $EVAL f'<meta http-equiv="refresh" content="0;url={vars["BASE"]}/?noscript=1">' if vars['PAGE'] == 'main' else ''
+        $EVAL '<meta http-equiv="refresh" content="0;url=?noscript=1">' if vars['PAGE'] != 'fancy' else ''
     </noscript>
     <script>
         var i18n = {
