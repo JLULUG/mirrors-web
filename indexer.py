@@ -5,11 +5,6 @@ import re
 import os
 import os.path as path
 badges = {
-    'alpine': 1,
-    'ubuntu': 1,
-    'debian': 1,
-    'manjaro': 1,
-    'CTAN': 1,
 }
 
 cwd = path.join(path.dirname(path.abspath(__file__)), 'src')
