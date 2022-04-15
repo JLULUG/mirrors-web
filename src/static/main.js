@@ -43,7 +43,7 @@ var app = {
             for (let i in this.relOrAbs) this.relOrAbs[i] ^= 1
         },
         updateMirrors: async function () {
-            let response = await fetch('./jobs')
+            $VAR let response = await fetch('$BASE/api/jobs')
             let mirrors = await response.json()
             mirrors.sort((a, b) => { // case insensitive sort
                 return -1 + 2 * (a.name.toLowerCase() > b.name.toLowerCase())
