@@ -2,7 +2,11 @@ $INCLUDE_ONLY
 'use strict';
 
 /* fancy.js */
-$VAR if (location.pathname === '$BASE/') location.href = '$BASE/'
+if (new URL(location).searchParams.has('noscript')) {
+    let redirect = new URL(location)
+    redirect.searchParams.delete('noscript')
+    location.replace(redirect)
+}
 
 var app = {}
 
