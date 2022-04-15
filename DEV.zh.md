@@ -1,7 +1,8 @@
 # 吉林大学开源镜像站 设计概念
 
-## 设计原则
+## 设计考量
 
+- 可维护性源于清晰的结构和良好的文档
 - 考虑后端进程带来的性能和安全影响，静态页面文件更加合适
 - 考虑天天学习现代前端新技术的成本，以及场景的简单性，复古的 HTML+CSS+JS 更加合适
 - 利用镜像调度器的 API ，将 API 暴露到前端用于渲染是可行的
@@ -16,27 +17,27 @@
     - 即 `gen.py`
 - 对于文档和新闻页面，利用一个前端 Markdown 渲染器，不必将原稿编译成包含重复内容的页面
     - [Marked](https://github.com/markedjs/marked) 被选作渲染器
+- 利用 [fancyindex](https://github.com/aperezdc/ngx-fancyindex) ，可以以较友好的方式展现子目录
+- 利用不依赖 JavaScript 的 fancyindex 页面，配合 NGINX 魔法，可以实现有限的 noscript 支持
+    - 利用 Vue 替换 HTML 内容的特性，在无法加载脚本时，使用嵌入的默认语言内容
 
 ## 文件结构
 
 - `docs/` - 镜像站使用文档
-    - `_posts/` - 带语言后缀的帮助文档 Markdown
-        - `[mirror].{en|zh}.md`
+    - `_posts/[mirror].{en|zh}.md` - 带语言后缀的帮助文档 Markdown
     - `index.js` - 生成的帮助文档索引
     - `index.html` - 用于加载帮助文档的静态页面
 - `news/` - 新闻和公告
-    - `_posts/` - 带日期的新闻公告文档 Markdown
-        - `YYYY-MM-DD-[title].md` 
+    - `_posts/YYYY-MM-DD-[title].md` - 带日期的新闻公告文档 Markdown
     - `index.js` - 生成的新闻公告索引
     - `index.html` - 用于加载和罗列新闻的静态页面
 - `static/`
     - `lib/` - 外部框架文件
-    - `i18n/` - 界面的国际化翻译
-        - `common.js` - 公共字串和代码
-        - `{main|docs|news}.js` - 特定页面的字串
+    - `fancy/{header|footer}.html` - 用于 fancyindex 的页眉页脚
     - `common.{css|js}` - 公共样式表或脚本
-    - `{main|docs|news}.{css|js}` - 特定页面的样式表或脚本
+    - `{main|docs|news|fancy}.{css|js}` - 特定页面的样式表或脚本
     - `logo.svg` - 网站图标
+- `api/` - 为 `build/api/` 中动态内容占位
 - `{header|footer}.html` - 公共页眉页脚模板
 - `index.html` - 用于加载镜像列表的主页
 

@@ -10,11 +10,33 @@ To build the website, run `./gen.py`
 
 To start a test server with live-rebuild, run `./dev.py`
 
-You may need some data like `/jobs` API from [tunasync](https://github.com/tuna/tunasync) and `distros.js` for ISOs, which are dynamically generated in production. 
+You may need some data like `/jobs` API from [tunasync](https://github.com/tuna/tunasync) and `distros.js` for ISOs, which are dynamically generated in production, placed in `/build/api/`. 
+
+To add news post or mirror documentation, create Markdown files with naming convention [below](#structure) in `{docs|news}/_posts`, then commit and regenerate.
+
+Suggested NGINX configuration:
+
+```
+index index$arg_noscript.html;
+
+fancyindex on;
+fancyindex_exact_size off;
+fancyindex_time_format "%Y-%m-%d %H:%M";
+fancyindex_header /static/fancy/header.html;
+fancyindex_footer /static/fancy/footer.html;
+
+location ^~ /api/ {
+        expires -1;
+}
+location ^~ /static/ {
+        expires 30d;
+}
+```
 
 ## Structure
 
 - `build/` - the website to be built by `gen.py`
+    - `api/` - dynamically generated content
 - `src/` - source code
     - `docs/_posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
     - `news/_posts/YYYY-MM-DD-[title].md` - markdown of news posts with date

@@ -1,7 +1,8 @@
 # Design Concepts of JLU Mirrors
 
-## Design Principles
+## Design Considerations
 
+- Clear structure and good documentations lead to maintainability.
 - Considering the performance and security impacts of having a backend daemon, a static page is preferable
 - Considering the cost of learning daily new techs of modern frontend and the simplicity of use case, a retro HTML+CSS+JS way is preferable
 - With the API from the mirror scheduler, it's ok to expose the API to the frontend for rendering
@@ -16,27 +17,27 @@
     - it's `gen.py`
 - For documentation and news, with a frontend Markdown renderer, compiled HTML files with duplicate content are not needed
     - [Marked](https://github.com/markedjs/marked) is selected
+- With [fancyindex](https://github.com/aperezdc/ngx-fancyindex), browsering sub-directories can be user-frinedly
+- With a non-JavaScript fancyindex page, and with NGINX magics, limited noscript support can be implemented
+    - With Vue replacing HTML content, use the default language conetnt embeded when JavaScript is disabled
 
 ## File Structure
 
 - `docs/` - documentations of mirrors
-    - `_posts/` - markdown of docs with language suffix
-        - `[mirror].{en|zh}.md`
+    - `_posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
     - `index.js` - generated index of docs
     - `index.html` - static page for loading docs
 - `news/` - news and announcements
-    - `_posts/` - markdown of news posts with date
-        - `YYYY-MM-DD-[title].md` 
+    - `_posts/YYYY-MM-DD-[title].md` - markdown of news posts with date
     - `index.js` - generated index of news post
     - `index.html` - static page for loading or listing news post
 - `static/`
     - `lib/` - external libraries
-    - `i18n/` - translations of interface
-        - `common.js` - common texts and code
-        - `{main|docs|news}.js` - page-specific texts
+    - `fancy/{header|footer}.html` - 用于 fancyindex 的页眉页脚
     - `common.{css|js}` - common style sheet and scripts
-    - `{main|docs|news}.{css|js}` - page-specific ones
+    - `{main|docs|news|fancy}.{css|js}` - page-specific ones
     - `logo.svg` - website logo
+- `api/` - place holder for dynamic content in `build/api/`
 - `{header|footer}.html` - the common HTML template
 - `index.html` - home page for loading mirrors
 

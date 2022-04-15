@@ -8,11 +8,33 @@
 
 要启动一个检测文件改动，自动重构建的测试服务器，执行 `./dev.py` 。
 
-你可能需要一些数据，如 [tunasync](https://github.com/tuna/tunasync) 的 `/jobs` API ，以及用于下载 ISO 的 `distros.js` ，生产环境下这些内容是动态生成的。
+你可能需要一些数据，如 [tunasync](https://github.com/tuna/tunasync) 的 `/jobs` API ，以及用于下载 ISO 的 `distros.js` ，生产环境下这些内容是动态生成的，放在 `/build/api/` 目录下。
+
+要添加新的新闻公告或镜像站文档，在 `{docs|news}/_posts` 参照[目录结构](#目录结构)所列命名习惯创建 Markdown 文档，提交仓库并重新生成站点。
+
+建议的 NGINX 配置模板：
+
+```
+index index$arg_noscript.html;
+
+fancyindex on;
+fancyindex_exact_size off;
+fancyindex_time_format "%Y-%m-%d %H:%M";
+fancyindex_header /static/fancy/header.html;
+fancyindex_footer /static/fancy/footer.html;
+
+location ^~ /api/ {
+        expires -1;
+}
+location ^~ /static/ {
+        expires 30d;
+}
+```
 
 ## 目录结构
 
 - `build/` - `gen.py` 构建出的网站
+    - `api/` - 动态生成的内容
 - `src/` - 源代码
     - `docs/_posts/[mirror].{en|zh}.md` - 带语言后缀的帮助文档 Markdown
     - `news/_posts/YYYY-MM-DD-[title].md` - 带日期的新闻公告文档 Markdown
