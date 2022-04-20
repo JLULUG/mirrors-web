@@ -10,7 +10,7 @@
 
 你可能需要一些数据，如 [tunasync](https://github.com/tuna/tunasync) 的 `/jobs` API ，以及用于下载 ISO 的 `distros.js` ，生产环境下这些内容是动态生成的，放在 `/build/api/` 目录下。
 
-要添加新的新闻公告或镜像站文档，在 `{docs|news}/_posts` 参照[目录结构](#目录结构)所列命名习惯创建 Markdown 文档，提交仓库并重新生成站点。
+要添加新的新闻公告或镜像站文档，在 `src/{docs|news}/_posts` 参照[目录结构](#目录结构)所列命名习惯创建 Markdown 文档，提交仓库并重新生成站点。
 
 建议的 NGINX 配置模板：
 

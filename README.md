@@ -12,7 +12,7 @@ To start a test server with live-rebuild, run `./dev.py`
 
 You may need some data like `/jobs` API from [tunasync](https://github.com/tuna/tunasync) and `distros.js` for ISOs, which are dynamically generated in production, placed in `/build/api/`. 
 
-To add news post or mirror documentation, create Markdown files with naming convention [below](#structure) in `{docs|news}/_posts`, then commit and regenerate.
+To add news post or mirror documentation, create Markdown files with naming convention [below](#structure) in `src/{docs|news}/_posts`, then commit and regenerate.
 
 Suggested NGINX configuration:
 
