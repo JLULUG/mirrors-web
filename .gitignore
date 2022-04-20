@@ -1,0 +1,4 @@
+/build/*
+/src/docs/index.js
+/src/news/index.js
+!.gitkeep
