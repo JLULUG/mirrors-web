@@ -79,13 +79,17 @@ main aside p {
     background-color: #000c;
 }
 #modal #modalClose {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 0.5rem;
     font-size: 2em;
     cursor: pointer;
 }
 #modal >div {
+    position: relative;
     display: flex;
-    width: 50%;
+    width: 60%;
     margin: 5% auto;
     padding: 2em;
     color: var(--fg);
@@ -93,7 +97,7 @@ main aside p {
     box-shadow: 5px 5px 1em #0006;
 }
 #modal >div >div {
-    flex: 9999;
+    flex: 99999 100%;
 }
 #modal ul {
     margin: 0 2em 0 0;
@@ -124,7 +128,7 @@ main aside p {
 }
 @media screen and (max-width: 1024px) {
     #modal >div {
-        width: 70%;
+        width: 80%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -141,7 +145,11 @@ main aside p {
         display: none;
     }
     #modal >div {
-        width: 85%;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #modal h3 {
+        margin-top: 0.5em;
     }
 }
 @media print {

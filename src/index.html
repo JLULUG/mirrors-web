@@ -106,13 +106,13 @@ $INCLUDE header.html
 </main>
 <div v-if="modal" @click.self="modal=false" id="modal">
     <div>
+        <span @click="modal=false" id="modalClose">&times;</span>
         <ul>
             <li v-for="distro in distros" :class="{ active: distro==current }">
                 <a @click="current=distro">{{ distro.distro }}</a>
             </li>
         </ul>
         <div>
-            <span @click="modal=false" id="modalClose">&times;</span>
             <h3>{{ current.distro }}</h3>
             <p v-for="item in current.urls">
                 $VAR <a :href="'$BASE'+item.url">{{ item.name }}</a>

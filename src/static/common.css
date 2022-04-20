@@ -19,6 +19,9 @@ $INCLUDE static/lib/normalize.min.css
         --theme-link: #5f95f1;
     }
 }
+* {
+    box-sizing: border-box;
+}
 #app[v-cloak] {
     display: none;
 }
