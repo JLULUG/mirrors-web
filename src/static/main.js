@@ -26,35 +26,28 @@ var app = {
             let future = diff < 0
             let round = future ? Math.ceil : Math.floor
             let ret = ''
-            if (abs < (60 - future) + future) return future ? this._.timeSoon : this._.timeJustNow
+            if (abs < (60 - future) + future) ret = this._.timeSeconds
             else if (abs < (60 * 60 - future) + future) ret = this._.timeMinute(round(abs / 60))
             else if (abs < (60 * 60 * 24 - future) + future) ret = this._.timeHour(round(abs / 60 / 60))
             else if (abs < (60 * 60 * 24 * 365 - future) + future) ret = this._.timeDay(round(abs / 60 / 60 / 24))
             else if (abs < (60 * 60 * 24 * 365 * 10 - future) + future) ret = this._.timeYear(round(abs / 60 / 60 / 24 / 365))
             else ret = this._.timeMore
             if (parseInt(ret) > 1) ret = this._.timePlural(ret)
-            if (future) return this._.timeFuture(ret)
-            else return this._.timePast(ret)
+            return future ? this._.timeFuture(ret) : this._.timePast(ret)
         },
-        absTime: function (ts) { // this also
+        absTime: function (ts) { // this either
             return new Date((ts - new Date().getTimezoneOffset() * 60) * 1000).toISOString().slice(0, 16).replace('T', ' ')
         },
         flipAll: function () {
             for (let i in this.relOrAbs) this.relOrAbs[i] ^= 1
         },
         updateMirrors: async function () {
-            $VAR let response = await fetch('$BASE/api/jobs')
+            $VAR let response = await fetch('$BASE/api/shine.json')
             let mirrors = await response.json()
             mirrors.sort((a, b) => { // case insensitive sort
                 return -1 + 2 * (a.name.toLowerCase() > b.name.toLowerCase())
             })
             mirrors.forEach((mirror) => {
-                mirror.status = { // sanitize various statuses
-                    'success': 'success',
-                    'failed': 'failed',
-                    'syncing': 'syncing',
-                    'pre-syncing': 'syncing',
-                }[mirror.status] || 'unknown'
                 // responsive set
                 this.$set(this.relOrAbs, mirror.name, this.relOrAbs[mirror.name] || false)
             })

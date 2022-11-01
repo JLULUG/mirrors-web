@@ -25,7 +25,7 @@ main table tbody tr.syncing {
 main table tbody tr.failed {
     background-color: hsla(0deg 57% 70% / 33%);
 }
-main table tbody tr.unknown {
+main table tbody tr.paused {
     background-color: hsla(29deg 84% 70% / 33%);
 }
 main table tbody tr svg {
@@ -43,7 +43,7 @@ main table tbody tr svg.help {
 main table tbody tr svg.failed {
     fill: hsl(0deg 57% 50%);
 }
-main table tbody tr svg.unknown {
+main table tbody tr svg.paused {
     fill: hsl(29deg 84% 50%);
 }
 main table tbody tr svg.syncing {
@@ -162,7 +162,7 @@ main aside p {
     }
     main table tbody tr.syncing,
     main table tbody tr.failed,
-    main table tbody tr.unknown {
+    main table tbody tr.paused {
         background-color: transparent;
     }
 }

@@ -35,23 +35,23 @@ $INCLUDE header.html
                         </a>
                     </td>
                     <td>
-                        <span @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.last_update_ts)">
-                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.last_update_ts) }}
+                        <span @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.last_update)">
+                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.last_update) }}
                         </span>
                         <span v-if="mirror.status=='failed'" :title="_.iconFailed">
                             <svg xmlns="http://www.w3.org/2000/svg" class="failed" viewBox="0 0 512 512">
                                 <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM232 152C232 138.8 242.8 128 256 128s24 10.75 24 24v128c0 13.25-10.75 24-24 24S232 293.3 232 280V152zM256 400c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z" />
                             </svg>
                         </span>
-                        <span v-if="mirror.status=='unknown'" :title="_.iconUnknown">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="unknown" viewBox="0 0 512 512">
+                        <span v-if="mirror.status=='paused'" :title="_.iconPaused">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="paused" viewBox="0 0 512 512">
                                 <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM232 152C232 138.8 242.8 128 256 128s24 10.75 24 24v128c0 13.25-10.75 24-24 24S232 293.3 232 280V152zM256 400c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z" />
                             </svg>
                         </span>
                     </td>
                     <td>
-                        <span v-if="mirror.status!='syncing'" @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.next_schedule_ts)">
-                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.next_schedule_ts) }}
+                        <span v-if="mirror.status!='syncing'" @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.next_schedule)">
+                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.next_schedule) }}
                         </span>
                         <span v-if="mirror.status=='syncing'" :title="_.iconSyncing">
                             <svg xmlns="http://www.w3.org/2000/svg" class="syncing" viewBox="0 0 512 512">
@@ -129,9 +129,8 @@ $INCLUDE header.html
     i18n.en.iconHelp = 'Help'
     i18n.en.iconSyncing = 'Syncing'
     i18n.en.iconFailed = 'Sync Failed'
-    i18n.en.iconUnknown = 'Status Unknown'
-    i18n.en.timeSoon = 'soon'
-    i18n.en.timeJustNow = 'just now'
+    i18n.en.iconPaused = 'Sync Paused'
+    i18n.en.timeSeconds = 'seconds'
     i18n.en.timeMinute = s => s + ' minute'
     i18n.en.timeHour = s => s + ' hour'
     i18n.en.timeDay = s => s + ' day'
@@ -164,9 +163,8 @@ $INCLUDE header.html
     i18n.zh.iconHelp = '帮助'
     i18n.zh.iconSyncing = '正在同步'
     i18n.zh.iconFailed = '同步失败'
-    i18n.zh.iconUnknown = '状态未知'
-    i18n.zh.timeSoon = '即将开始'
-    i18n.zh.timeJustNow = '刚刚同步'
+    i18n.zh.iconPaused = '暂停同步'
+    i18n.zh.timeSeconds = '数秒'
     i18n.zh.timeMinute = s => s + ' 分钟'
     i18n.zh.timeHour = s => s + ' 小时'
     i18n.zh.timeDay = s => s + ' 天'
