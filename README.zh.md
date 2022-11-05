@@ -19,7 +19,7 @@
 
 ## 安装
 
-只消 `ln -s public/* /mirrors_root/` 即可。
+只消 `ln -srf public/* /mirrors_root/` 即可。
 
 请在 `_{docs|news}/posts` 中按照[如下](#structure)命名规则创建新闻与文档, 然后运行 `python3 index.py` 生成两个 `index.js` 。
 

@@ -19,7 +19,7 @@ This website,
 
 ## Installation
 
-Just `ln -s public/* /mirrors_root/`.
+Just `ln -srf public/* /mirrors_root/`.
 
 Create documentation or news posts in `_{docs|news}/posts` with the naming conventions [below](#structure), and run `python3 index.py` to generate `index.js` for new docs and news.
 
