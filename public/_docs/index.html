@@ -2,7 +2,9 @@
 <!--# include file="/_static/header.html" -->
 <main>
     <ul>
-        <li v-for="(_, doc) in docs" :class="{ active: doc==current }"><a :href="'#'+doc">{{ doc }}</a></li>
+        <li v-for="(_, doc) in docs" :class="{ active: doc==current }">
+            <a :href="'#'+doc">{{ doc }}</a>
+        </li>
     </ul>
     <div v-html="content"></div>
 </main>
