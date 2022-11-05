@@ -39,10 +39,13 @@ location = /index.html {
 }
 location ^~ /_ {
     ssi on;
-}
-location ^~ /_api/ {
-    root /run/shine/api;
     expires -1;
+    location ^~ /_api/ {
+        alias /run/shine/api/;
+    }
+    location ^~ /_static/ {
+        expires 30d;
+    }
 }
 ```
 
