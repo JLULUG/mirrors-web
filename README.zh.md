@@ -1,51 +1,75 @@
-# 吉林大学开源镜像站前端
+# 吉林大学开源镜像站
 
-## 用法
+[English README](./README.md)
 
-网站构建后是一系列静态文件，构建需要 Python 3.7+ ，没有其他依赖。
+本仓库是吉林大学开源镜像站的网站前端界面。
 
-要构建网站，执行 `./gen.py` 。
+## 功能
 
-要启动一个检测文件改动，自动重构建的测试服务器，执行 `./dev.py` 。
+本站
 
-你可能需要一些数据，如 [tunasync](https://github.com/tuna/tunasync) 的 `/jobs` API ，以及用于下载 ISO 的 `distros.js` ，生产环境下这些内容是动态生成的，放在 `/build/api/` 目录下。
+- 完全由静态的 HTML+CSS+JS 制成
+- 使用 NGINX 的 SSI (server-side inclusion) 模块作为简单模板引擎
+- 使用 [Vue.js 2.x](https://github.com/vuejs/vue) 在客户端渲染动态 API 结果
+- 需要与 [shine](https://github.com/JLULUG/shine) 提供的 API 一起使用
+    - 或者稍做修改，也可以适配 [tunasync](https://github.com/tuna/tunasync)
+- 使用 [normalize.css](https://github.com/necolas/normalize.css) 作为样式表基础
+- 使用 [Marked](https://github.com/markedjs/marked) 渲染 markdown 格式的新闻与文档
+- 可以使用 NGINX 的 [fancyindex](https://github.com/aperezdc/ngx-fancyindex) 模块提供友好的目录浏览和 noscript 支持
 
-要添加新的新闻公告或镜像站文档，在 `src/{docs|news}/_posts` 参照[目录结构](#目录结构)所列命名习惯创建 Markdown 文档，提交仓库并重新生成站点。
+## 安装
 
-建议的 NGINX 配置模板：
+只消 `ln -s public/* /mirrors_root/` 即可。
+
+请在 `_{docs|news}/posts` 中按照[如下](#structure)命名规则创建新闻与文档, 然后运行 `python3 index.py` 生成两个 `index.js` 。
+
+NGINX 配置建议：
 
 ```
 index index$arg_noscript.html;
-
+#autoindex on;
 fancyindex on;
 fancyindex_exact_size off;
 fancyindex_time_format "%Y-%m-%d %H:%M";
-fancyindex_header /static/fancy/header.html;
-fancyindex_footer /static/fancy/footer.html;
+fancyindex_header /_static/fancy/header.html;
+fancyindex_footer /_static/fancy/footer.html;
 
-location ^~ /api/ {
-        expires -1;
+location = /index.html {
+    ssi on;
 }
-location ^~ /static/ {
+location ^~ /_ {
+    ssi on;
+    expires -1;
+    location ^~ /_api/ {
+        alias /run/shine/api/;
+    }
+    location ^~ /_static/ {
         expires 30d;
+    }
 }
 ```
 
-## 目录结构
+## 文件结构
 
-- `build/` - `gen.py` 构建出的网站
-    - `api/` - 动态生成的内容
-- `src/` - 源代码
-    - `docs/_posts/[mirror].{en|zh}.md` - 带语言后缀的帮助文档 Markdown
-    - `news/_posts/YYYY-MM-DD-[title].md` - 带日期的新闻公告文档 Markdown
-    - `statics/` - 样式表和脚本
-    - ... 更多细节请见 `DEV.zh.md`
-- `indexer.py` - 将帮助文档和新闻公告索引到两个 JS 对象中
-- `gen.py` - 一个极小模板引擎；将 `src/` 构建到 `build/` ；更多细节见 `DEV.zh.md`
-- `dev.py` - 启动 `http.server` 并在 `src/` 变化时自动重构建
-- `.gitignore` - 将 `build/` 和文档索引排除版本管理
+- `public/`
+    - `_docs/` - 镜像站文档
+        - `posts/[mirror].{en|zh}.md` - 带有语言后缀的 markdown 格式文档
+        - `index.js` - 生成的索引
+        - `index.html` - 文档页面模板
+    - `_news/` - 新闻和公告
+        - `posts/YYYY-MM-DD-[title].md` - 带有日期前缀的 markdown 格式新闻
+        - `index.js` - 生成的索引
+        - `index.html` - 新闻页面模板
+    - `_static/`
+        - `lib/` - 引用的外部前端库
+        - `fancy/{header|footer}.html` - fancyindex 页面模板
+        - `common.{css|js}` - 公共页面样式和脚本
+        - `{main|docs|news|fancy}.{css|js}` - 特定页面样式和脚本
+        - `logo.svg` - 网站图标
+        - `{header|footer}.html` - HTML 页面模板
+    - `index.html` - 主页模板
+- `index.py` - 用于生成 `_{doc|new}s/index.js`
 - `LICENSE.txt` - GNU AGPLv3 许可证文本
-- `DEV(.zh).md` - 对开发者有用的设计概念
 - `README(.zh).md` - 本文档
 
 ## 许可协议

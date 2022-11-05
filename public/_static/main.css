@@ -1,0 +1,164 @@
+#back {
+    display: none;
+}
+main {
+    display: flex;
+}
+main >div {
+    flex: 5 70%;
+    overflow-x: auto;
+}
+main table {
+    white-space: nowrap;
+}
+main table td:nth-child(1) {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+main table tbody tr.syncing {
+    background-color: hsla(194deg 70% 70% / 33%);
+}
+main table tbody tr.failed {
+    background-color: hsla(0deg 57% 70% / 33%);
+}
+main table tbody tr.paused {
+    background-color: hsla(29deg 84% 70% / 33%);
+}
+main table tbody tr svg {
+    width: 1em;
+    margin-left: 0.3em;
+    margin-bottom: -0.2em;
+}
+main table tbody tr svg.badge {
+    margin-bottom: -0.4em;
+    fill: orange;
+}
+main table tbody tr svg.help {
+    fill: var(--theme-link);
+}
+main table tbody tr svg.failed {
+    fill: hsl(0deg 57% 50%);
+}
+main table tbody tr svg.paused {
+    fill: hsl(29deg 84% 50%);
+}
+main table tbody tr svg.syncing {
+    fill: hsl(194deg 70% 50%);
+    animation: rotate 2s linear infinite;
+}
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+main aside {
+    flex: 2 25%;
+    margin-top: -1em;
+    margin-left: 1em;
+}
+main aside h3 {
+    margin: 1em 0 0.5em;
+}
+main aside p {
+    margin: 0.8em 0 0.5em;
+}
+
+#modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden auto;
+    background-color: #000c;
+}
+#modal #modalClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 0.5rem;
+    font-size: 2em;
+    cursor: pointer;
+}
+#modal >div {
+    position: relative;
+    display: flex;
+    width: 60%;
+    margin: 5% auto;
+    padding: 2em;
+    color: var(--fg);
+    background-color: var(--bg);
+    box-shadow: 5px 5px 1em #0006;
+}
+#modal >div >div {
+    flex: 99999 100%;
+}
+#modal ul {
+    margin: 0 2em 0 0;
+    padding: 0;
+    list-style: none;
+}
+#modal ul li {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+#modal ul li a {
+    display: block;
+    padding: 0.5em 1em;
+}
+#modal h3 {
+    margin: 0 0 1em 0;
+}
+#modal ul li a:active,
+#modal ul li.active,
+#modal ul li a:hover {
+    border-radius: 0.3em;
+    background-color: #bbb5;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1920px) {
+}
+@media screen and (max-width: 1024px) {
+    #modal >div {
+        width: 80%;
+    }
+}
+@media screen and (max-width: 768px) {
+    main {
+        flex-wrap: wrap;
+    }
+    main aside {
+        margin-top: 0.5em;
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 568px) {
+    main table tr :nth-child(3) {
+        display: none;
+    }
+    #modal >div {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    #modal h3 {
+        margin-top: 0.5em;
+    }
+}
+@media print {
+    main {
+        flex-wrap: wrap;
+    }
+    main aside {
+        margin-top: 0.5em;
+        margin-left: 0;
+    }
+    main table tbody tr.syncing,
+    main table tbody tr.failed,
+    main table tbody tr.paused {
+        background-color: transparent;
+    }
+}

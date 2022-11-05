@@ -1,0 +1,35 @@
+#back {
+    display: none;
+}
+main {
+    overflow-x: auto;
+}
+main table {
+    white-space: nowrap;
+}
+main table thead a {
+    color: currentColor;
+    text-decoration: none;
+    pointer-events: none;
+}
+main table thead th a:nth-child(2) {
+    display: none;
+}
+main table td:nth-child(1) {
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 1920px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 768px) {
+}
+@media screen and (max-width: 568px) {
+    main table tr :nth-child(2) {
+        display: none;
+    }
+}
+@media print {
+}

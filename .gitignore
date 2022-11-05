@@ -1,8 +1,5 @@
-/build/*
-/src/docs/index.js
-/src/news/index.js
-/src/api/*
-!.gitkeep
+/public/_docs/index.js
+/public/_news/index.js
 
 .mypy_cache/
 __pycache__/

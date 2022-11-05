@@ -1,0 +1,11 @@
+<!--# set var="page" value="docs" -->
+<!--# include file="/_static/header.html" -->
+<main>
+    <ul>
+        <li v-for="(_, doc) in docs" :class="{ active: doc==current }"><a :href="'#'+doc">{{ doc }}</a></li>
+    </ul>
+    <div v-html="content"></div>
+</main>
+<script src="/_static/lib/marked.min.js"></script>
+<script src="/_docs/index.js"></script>
+<!--# include file="/_static/footer.html" -->

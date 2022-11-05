@@ -1,0 +1,32 @@
+<!--# set var="page" value="news" -->
+<!--# include file="/_static/header.html" -->
+<main v-if="current" v-html="content">
+</main>
+<main id="list" v-if="!current">
+    <h2>{{ _.news }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ _.tableTitle }}</th>
+                <th>{{ _.tableDate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="post in news">
+                <td><a :href="'#'+post.name">{{ post.text }}</a></td>
+                <td>{{ post.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<script>
+    i18n.en.news = 'News'
+    i18n.en.tableTitle = 'Title'
+    i18n.en.tableDate = 'Date'
+    i18n.zh.news = '镜像站新闻'
+    i18n.zh.tableTitle = '标题'
+    i18n.zh.tableDate = '发布日期'
+</script>
+<script src="/_static/lib/marked.min.js"></script>
+<script src="/_news/index.js"></script>
+<!--# include file="/_static/footer.html" -->

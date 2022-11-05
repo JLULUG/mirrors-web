@@ -2,52 +2,71 @@
 
 [中文 README](./README.zh.md)
 
-## Usage
+This repository is the frontend of the JLU Mirrors.
 
-The website builds into static files. Python 3.7+ is required for building, with no other dependencies.
+## Features
 
-To build the website, run `./gen.py`
+This website,
 
-To start a test server with live-rebuild, run `./dev.py`
+- is made of plain static HTML+CSS+JS files
+- use the SSI (server-side inclusion) module of NGINX as a simple templating engine
+- use [Vue.js 2.x](https://github.com/vuejs/vue) for client-side rendering of dynamic API results
+- should be used with the API from [shine](https://github.com/JLULUG/shine)
+    - or [tunasync](https://github.com/tuna/tunasync) with slight modification
+- use [normalize.css](https://github.com/necolas/normalize.css) as the base style sheet
+- use [Marked](https://github.com/markedjs/marked) for markdown rendering of news posts
+- can be used with NGINX [fancyindex](https://github.com/aperezdc/ngx-fancyindex) module to provide frinedly directory browsering and noscript support
 
-You may need some data like `/jobs` API from [tunasync](https://github.com/tuna/tunasync) and `distros.js` for ISOs, which are dynamically generated in production, placed in `/build/api/`. 
+## Installation
 
-To add news post or mirror documentation, create Markdown files with naming convention [below](#structure) in `src/{docs|news}/_posts`, then commit and regenerate.
+Just `ln -s public/* /mirrors_root/`.
+
+Create documentation or news posts in `_{docs|news}/posts` with the naming conventions [below](#structure), and run `python3 index.py` to generate `index.js` for new docs and news.
 
 Suggested NGINX configuration:
 
 ```
 index index$arg_noscript.html;
-
+#autoindex on;
 fancyindex on;
 fancyindex_exact_size off;
 fancyindex_time_format "%Y-%m-%d %H:%M";
-fancyindex_header /static/fancy/header.html;
-fancyindex_footer /static/fancy/footer.html;
+fancyindex_header /_static/fancy/header.html;
+fancyindex_footer /_static/fancy/footer.html;
 
-location ^~ /api/ {
-        expires -1;
+location = /index.html {
+    ssi on;
 }
-location ^~ /static/ {
-        expires 30d;
+location ^~ /_ {
+    ssi on;
+}
+location ^~ /_api/ {
+    root /run/shine/api;
+    expires -1;
 }
 ```
 
 ## Structure
 
-- `build/` - the website to be built by `gen.py`
-    - `api/` - dynamically generated content
-- `src/` - source code
-    - `docs/_posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
-    - `news/_posts/YYYY-MM-DD-[title].md` - markdown of news posts with date
-    - `statics/` - style sheets and scripts
-    - ... for details see `DEV.md`
-- `indexer.py` - indexes docs and news posts into two JS object
-- `gen.py` - a minimal template engine; builds `src/` into `build/`
-- `dev.py` - starts `http.server` and rebuild on file changes in `src/`
-- `.gitignore` - exclude `build/` and post indices from CVS
+- `public/`
+    - `_docs/` - documentations of mirrors
+        - `posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
+        - `index.js` - generated index
+        - `index.html` - page template for documentations
+    - `_news/` - news and announcements
+        - `posts/YYYY-MM-DD-[title].md` - markdown of news with date prefix
+        - `index.js` - generated index
+        - `index.html` - page template for news
+    - `_static/`
+        - `lib/` - external libraries
+        - `fancy/{header|footer}.html` - template for fancyindex module
+        - `common.{css|js}` - common style sheet and scripts
+        - `{main|docs|news|fancy}.{css|js}` - page-specific ones
+        - `logo.svg` - website logo
+        - `{header|footer}.html` - HTML page template
+    - `index.html` - template of home page
+- `index.py` - generate `_{doc|new}s/index.js`
 - `LICENSE.txt` - GNU AGPLv3 license text
-- `DEV(.zh).md` - useful design concepts for developers
 - `README(.zh).md` - this document
 
 ## License
@@ -56,11 +75,11 @@ Copyleft 2022 LUG@JLU. Licensed under GNU Affero General Public License version 
 
 The following files are licensed under MIT License:
 
-- `src/static/lib/marked.js` - Copyright 2011-2022 Christopher Jeffrey
-- `src/static/lib/normalize.min.css` - Copyright Nicolas Gallagher and Jonathan Neal
-- `src/static/lib/vue(.min).js` - Copyright 2014-2021 Evan You
+- `public/_static/lib/marked.js` - Copyright 2011-2022 Christopher Jeffrey
+- `public/_static/lib/normalize.min.css` - Copyright Nicolas Gallagher and Jonathan Neal
+- `public/_static/lib/vue(.min).js` - Copyright 2014-2021 Evan You
 
-The logo of Jilin University belongs to the university and is licensed under a private license.
+The logo of Jilin University, which belongs to the university, is licensed under a private license.
 
 ## Acknowledgements
 
