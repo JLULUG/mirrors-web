@@ -17,7 +17,7 @@ var app = {
         update: async function (doc) {
             this.current = doc
             if (!doc) doc = 'index'
-            let response = await fetch('./posts/' + doc + '.' + this.lang + '.md')
+            let response = await fetch('./' + doc + '.' + this.lang + '.md')
             this.content = marked.parse(await response.text())
             location.hash = '#' + doc
             window.scrollTo(0, 0)

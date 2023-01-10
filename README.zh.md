@@ -21,7 +21,7 @@
 
 只消 `ln -srf public/* /mirrors_root/` 即可。
 
-请在 `_{docs|news}/posts` 中按照[如下](#structure)命名规则创建新闻与文档, 然后运行 `python3 index.py` 生成两个 `index.js` 。
+请在 `_{docs|news}` 中按照[如下](#structure)命名规则创建新闻与文档, 然后运行 `python3 index.py` 生成两个 `index.js` 。
 
 NGINX 配置建议：
 
@@ -50,11 +50,11 @@ location ^~ /_ {
 
 - `public/`
     - `_docs/` - 镜像站文档
-        - `posts/[mirror].{en|zh}.md` - 带有语言后缀的 markdown 格式文档
+        - `[mirror].{en|zh}.md` - 带有语言后缀的 markdown 格式文档
         - `index.js` - 生成的索引
         - `_index.html` - 文档页面模板
     - `_news/` - 新闻和公告
-        - `posts/YYYY-MM-DD-[title].md` - 带有日期前缀的 markdown 格式新闻
+        - `YYYY-MM-DD-[title].md` - 带有日期前缀的 markdown 格式新闻
         - `index.js` - 生成的索引
         - `_index.html` - 新闻页面模板
     - `_static/`

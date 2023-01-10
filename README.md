@@ -21,7 +21,7 @@ This website,
 
 Just `ln -srf public/* /mirrors_root/`.
 
-Create documentation or news posts in `_{docs|news}/posts` with the naming conventions [below](#structure), and run `python3 index.py` to generate `index.js` for new docs and news.
+Create documentation or news posts in `_{docs|news}` with the naming conventions [below](#structure), and run `python3 index.py` to generate `index.js` for new docs and news.
 
 Suggested NGINX configuration:
 
@@ -50,11 +50,11 @@ location ^~ /_ {
 
 - `public/`
     - `_docs/` - documentations of mirrors
-        - `posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
+        - `[mirror].{en|zh}.md` - markdown of docs with language suffix
         - `index.js` - generated index
         - `_index.html` - page template for documentations
     - `_news/` - news and announcements
-        - `posts/YYYY-MM-DD-[title].md` - markdown of news with date prefix
+        - `YYYY-MM-DD-[title].md` - markdown of news with date prefix
         - `index.js` - generated index
         - `_index.html` - page template for news
     - `_static/`

@@ -10,7 +10,7 @@ var app = {
         update: async function (post) {
             this.current = post
             if (!this.current) return
-            let response = await fetch('./posts/' + post + '.md')
+            let response = await fetch('./' + post + '.md')
             this.content = marked.parse(await response.text())
             location.hash = '#' + post
             window.scrollTo(0, 0)
