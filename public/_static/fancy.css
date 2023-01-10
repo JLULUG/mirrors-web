@@ -4,18 +4,18 @@
 main {
     overflow-x: auto;
 }
-main table {
+main table#list {
     white-space: nowrap;
 }
-main table thead a {
+main table#list thead a {
     color: currentColor;
     text-decoration: none;
     pointer-events: none;
 }
-main table thead th a:nth-child(2) {
+main table#list thead th a:nth-child(2) {
     display: none;
 }
-main table td:nth-child(1) {
+main table#list td:nth-child(1) {
     font-family: 'Consolas', 'Courier New', Courier, monospace;
     font-weight: 700;
 }
