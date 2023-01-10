@@ -15,10 +15,21 @@
     <link rel="shortcut icon" type="image/svg" href="/_static/logo.svg">
     <link rel="stylesheet" href="/_static/lib/normalize.min.css">
     <link rel="stylesheet" href="/_static/common.css">
-    <link rel="stylesheet" href="/_static/<!--# echo var='page' -->.css">
+    <!--# if expr="$page" -->
+    <link rel="stylesheet" href="/_static/<!--# echo var="page" -->.css">
+    <!--# endif -->
     <noscript>
-        <!--# if expr="$page != fancy" -->
+        <!--# if expr="$noscript != true" -->
         <meta http-equiv="refresh" content="0;url=./?noscript=1">
+        <!--# else -->
+        <style>
+            #app[v-cloak] {
+                display: flex;
+            }
+            header nav {
+                display: none;
+            }
+        </style>
         <!--# endif -->
     </noscript>
     <script>

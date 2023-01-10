@@ -22,7 +22,9 @@
         </script>
     </div>
     <script src="/_static/lib/vue.min.js"></script>
-    <script src="/_static/<!--# echo var='page' -->.js"></script>
+    <!--# if expr="$page" -->
+    <script src="/_static/<!--# echo var="page" -->.js"></script>
+    <!--# endif -->
     <script src="/_static/common.js"></script>
 </body>
 </html>
