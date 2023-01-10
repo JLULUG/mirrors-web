@@ -1,3 +1,6 @@
+#back {
+    display: initial;
+}
 main#list table tbody tr :nth-child(1) {
     font-weight: 700;
 }

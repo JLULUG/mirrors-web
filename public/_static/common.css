@@ -27,6 +27,9 @@ body {
     color: var(--fg);
     background-color: var(--bg);
 }
+#back {
+    display: none;
+}
 
 /* element styles */
 a {
@@ -156,12 +159,6 @@ footer #logo {
     }
 }
 @media screen and (max-width: 768px) {
-    header,
-    main,
-    footer {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
     header h1 {
         font-size: 1.5em;
         line-height: 1.5;

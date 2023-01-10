@@ -1,3 +1,6 @@
+#back {
+    display: initial;
+}
 main {
     display: flex;
 }
