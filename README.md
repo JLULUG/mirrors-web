@@ -12,50 +12,33 @@ This website,
 - use the SSI (server-side inclusion) module of NGINX as a simple templating engine
 - use [Vue.js 2.x](https://github.com/vuejs/vue) for client-side rendering of dynamic API results
 - should be used with the API from [shine](https://github.com/JLULUG/shine)
-    - or [tunasync](https://github.com/tuna/tunasync) with slight modification
 - use [normalize.css](https://github.com/necolas/normalize.css) as the base style sheet
 - use [Marked](https://github.com/markedjs/marked) for markdown rendering of news posts
 - can be used with NGINX [fancyindex](https://github.com/aperezdc/ngx-fancyindex) module to provide frinedly directory browsering and noscript support
+    - actual fancyindex runs JLU Mirrors was heavily modified, upstream ver sucks
 
 ## Installation
 
-Just `ln -srf public/* /mirrors_root/`.
+Store web with mirrors: `ln -srf public/* /mirrors_root/`
 
-Create documentation or news posts in `_{docs|news}` with the naming conventions [below](#structure), and run `python3 index.py` to generate `index.js` for new docs and news.
+(Optionally) generate a large file for speedtesting: `dd if=/dev/urandom of=public/_static/speedtest.bin bs=1M count=1024`
 
-Suggested NGINX configuration:
+Create documentation or news posts in `_{docs|news}` with the naming conventions [below](#structure), and generate JSON indices: `./index.py`
 
-```
-index _index$arg_noscript.html;
-#autoindex on;
-fancyindex on;
-fancyindex_exact_size off;
-fancyindex_time_format "%Y-%m-%d %H:%M";
-fancyindex_header /_static/fancy/_header.html;
-fancyindex_footer /_static/fancy/_footer.html;
+If your server doesn't support SSI, render it offline: `./ssi.py`
 
-location ^~ /_ {
-    ssi on;
-    expires -1;
-    location ^~ /_api/ {
-        alias /run/shine/api/;
-    }
-    location ^~ /_static/ {
-        expires 30d;
-    }
-}
-```
+For NGINX configuration example, see `nginx-vhost.conf`
 
 ## Structure
 
 - `public/`
     - `_docs/` - documentations of mirrors
         - `[mirror].{en|zh}.md` - markdown of docs with language suffix
-        - `index.js` - generated index
+        - `index.json` - generated index
         - `_index.html` - page template for documentations
     - `_news/` - news and announcements
         - `YYYY-MM-DD-[title].md` - markdown of news with date prefix
-        - `index.js` - generated index
+        - `index.json` - generated index
         - `_index.html` - page template for news
     - `_static/`
         - `lib/` - external libraries
@@ -63,9 +46,11 @@ location ^~ /_ {
         - `common.{css|js}` - common style sheet and scripts
         - `{main|docs|news|fancy}.{css|js}` - page-specific ones
         - `logo.svg` - website logo
-        - `_{header|footer}.html` - HTML page template
+        - `_{header|footer|ban}.html` - HTML page template
     - `_index.html` - template of home page
-- `index.py` - generate `_{doc|new}s/index.js`
+- `index.py` - generate `_{doc|new}s/index.json`
+- `ssi.py` - render `_*.html` SSI templates offline
+- `nginx-vhost.conf` - NGINX config example
 - `LICENSE.txt` - GNU AGPLv3 license text
 - `README(.zh).md` - this document
 

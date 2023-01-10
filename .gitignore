@@ -1,5 +1,13 @@
-/public/_docs/index.js
-/public/_news/index.js
+# posts indices
+/public/_*s/index.json
 
+# speedtest blob
+/public/_static/speedtest.bin
+
+# rendered SSI templates
+*.html
+!_*.html
+
+# python dev cache
 .mypy_cache/
 __pycache__/
