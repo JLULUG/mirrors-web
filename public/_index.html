@@ -33,6 +33,11 @@
                                 <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 400c-18 0-32-14-32-32s13.1-32 32-32c17.1 0 32 14 32 32S273.1 400 256 400zM325.1 258L280 286V288c0 13-11 24-24 24S232 301 232 288V272c0-8 4-16 12-21l57-34C308 213 312 206 312 198C312 186 301.1 176 289.1 176h-51.1C225.1 176 216 186 216 198c0 13-11 24-24 24s-24-11-24-24C168 159 199 128 237.1 128h51.1C329 128 360 159 360 198C360 222 347 245 325.1 258z" />
                             </svg>
                         </a>
+                        <a v-if="mirror.distro" :title="_.distroButton" :href="'#'+mirror.name" @click="loadDistros()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="disc" viewBox="0 0 512 512">
+                                <path d="M512 256c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256zM256 224c17.7 0 32 14.3 32 32s-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32zm-96 32c0 53 43 96 96 96s96-43 96-96s-43-96-96-96s-96 43-96 96zM96 240c0-35 17.5-71.1 45.2-98.8S205 96 240 96c8.8 0 16-7.2 16-16s-7.2-16-16-16c-45.4 0-89.2 22.3-121.5 54.5S64 194.6 64 240c0 8.8 7.2 16 16 16s16-7.2 16-16z"/>
+                            </svg>
+                        </a>
                     </td>
                     <td>
                         <span @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.last_success)">
@@ -73,10 +78,10 @@
             </p>
             <p v-if="news.length>3"><a href="/_news/">{{ _.newsMore}}</a></p>
         </div>
-        <div v-if="distros.length">
+        <div>
             <h3>{{ _.distros }}</h3>
             <p>{{ _.distroDesc }}</p>
-            <button @click="modal=true">{{ _.distroButton }}</button>
+            <button @click="loadDistros()">{{ _.distroButton }}</button>
         </div>
         <h3>{{ _.routes }}</h3>
         <table>
@@ -109,16 +114,32 @@
 <div v-if="modal" @click.self="modal=false" id="modal">
     <div>
         <span @click="modal=false" id="modalClose">&times;</span>
-        <ul>
-            <li v-for="distro in distros" :class="{ active: distro==current }">
-                <a @click="current=distro">{{ distro.distro }}</a>
+        <ul id="distros">
+            <li v-for="(distro, mirror) in distros" :class="{ active: mirror==current }">
+                <a :href="'#'+mirror">{{ distro.name }}</a>
             </li>
         </ul>
-        <div>
-            <h3>{{ current.distro }}</h3>
-            <p v-for="item in current.urls">
-                <a :href="''+item.url">{{ item.name }}</a>
-            </p>
+        <div v-if="distro">
+            <h3>{{ distro.name }}</h3>
+            <p v-if="distro.desc" v-html="distro.desc[lang]"></p>
+            <div class="release" v-for="release in distro.releases">
+                <h4>{{ distro.name + ' ' + release.version }}</h4>
+                <p v-if="release.desc" v-html="release.desc[lang]"></p>
+                <ul>
+                    <li v-for="file in release.files">
+                        <a :href="file.url">{{ file.name }}</a>
+                        <span>
+                            <span v-if="file.comment">{{ file.comment }}</span>
+                            <span v-if="file.checksum || release.checksum">
+                                <a :href="file.checksum || release.checksum">{{ _.checksum }}</a>
+                            </span>
+                            <span v-if="file.signature || release.signature">
+                                <a :href="file.signature || release.signature">{{ _.signature }}</a>
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -191,6 +212,10 @@
     i18n.zh.linkNIC = '吉林大学大数据与网络中心'
     i18n.en.linkContact = 'Contact Us'
     i18n.zh.linkContact = '联络我们'
+    i18n.en.checksum = 'checksum'
+    i18n.zh.checksum = '校验和'
+    i18n.en.signature = 'signature'
+    i18n.zh.signature = '数字签名'
 </script>
 <script src="/_api/distros.js"></script>
 <script src="/_docs/index.js"></script>

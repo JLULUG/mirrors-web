@@ -7,12 +7,19 @@ var app = {
         docsAll: {'en': {}, 'zh': {}},
         news: [],
         modal: false,
-        distros: typeof distros === 'undefined' ? [] : distros,
-        current: {},
+        distros: undefined,
+        current: '',
     },
     computed: {
         docs: function () { return this.docsAll[this.lang] },
-        badges: function () { return this.docsAll['_badges'] },
+        distro: function () { return this.distros[this.current] },
+    },
+    watch: {
+        modal: function () {
+            if (this.modal) {
+                location.hash = '#' + (this.current = location.hash.slice(1))
+            }
+        }
     },
     methods: {
         relTime: function (ts) { // don't touch this
@@ -48,6 +55,10 @@ var app = {
             })
             this.mirrors = mirrors
         },
+        loadDistros: async function () {
+            this.distros = await (await fetch('/_api/distros.json')).json()
+            this.modal = true
+        }
     },
     created: async function () {
         setInterval(this.updateMirrors, 60 * 1000)
@@ -58,6 +69,9 @@ var app = {
             if (e.key == 'Escape') {
                 app.modal = false
             }
+        })
+        window.addEventListener('hashchange', function () {
+            app.current = location.hash.slice(1)
         })
     },
 }

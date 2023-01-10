@@ -34,6 +34,9 @@ main table tbody tr svg.badge {
 main table tbody tr svg.help {
     fill: var(--theme-link);
 }
+main table tbody tr svg.disc {
+    fill: var(--fg);
+}
 main table tbody tr svg.failed {
     fill: hsl(0deg 57% 50%);
 }
@@ -70,7 +73,11 @@ main aside p {
     height: 100%;
     z-index: 1;
     overflow: hidden auto;
+    scrollbar-width: none;
     background-color: #000c;
+}
+#modal::-webkit-scrollbar {
+    display: none;
 }
 #modal #modalClose {
     position: absolute;
@@ -90,32 +97,41 @@ main aside p {
     background-color: var(--bg);
     box-shadow: 5px 5px 1em #0006;
 }
-#modal >div >div {
-    flex: 99999 100%;
-}
-#modal ul {
+#modal #distros {
     margin: 0 2em 0 0;
     padding: 0;
     list-style: none;
 }
-#modal ul li {
-    margin: 0;
+#modal #distros li {
+    margin: 0.2em;
     padding: 0;
     white-space: nowrap;
 }
-#modal ul li a {
+#modal #distros li a {
     display: block;
     padding: 0.5em 1em;
+}
+#modal #distros li a:active,
+#modal #distros li.active,
+#modal #distros li a:hover {
+    border-radius: 0.3em;
+    background-color: #bbb5;
+    text-decoration: none;
+}
+#modal >div >div {
+    flex: 99999 100%;
 }
 #modal h3 {
     margin: 0 0 1em 0;
 }
-#modal ul li a:active,
-#modal ul li.active,
-#modal ul li a:hover {
-    border-radius: 0.3em;
-    background-color: #bbb5;
-    text-decoration: none;
+#modal .release li span span:first-child::before {
+    content: "(";
+}
+#modal .release li span span:not(:last-child)::after {
+    content: ", ";
+}
+#modal .release li span span:last-child::after {
+    content: ")";
 }
 
 @media screen and (max-width: 1920px) {
