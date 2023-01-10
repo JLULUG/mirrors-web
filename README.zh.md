@@ -26,17 +26,14 @@
 NGINX 配置建议：
 
 ```
-index index$arg_noscript.html;
+index _index$arg_noscript.html;
 #autoindex on;
 fancyindex on;
 fancyindex_exact_size off;
 fancyindex_time_format "%Y-%m-%d %H:%M";
-fancyindex_header /_static/fancy/header.html;
-fancyindex_footer /_static/fancy/footer.html;
+fancyindex_header /_static/fancy/_header.html;
+fancyindex_footer /_static/fancy/_footer.html;
 
-location = /index.html {
-    ssi on;
-}
 location ^~ /_ {
     ssi on;
     expires -1;
@@ -55,19 +52,19 @@ location ^~ /_ {
     - `_docs/` - 镜像站文档
         - `posts/[mirror].{en|zh}.md` - 带有语言后缀的 markdown 格式文档
         - `index.js` - 生成的索引
-        - `index.html` - 文档页面模板
+        - `_index.html` - 文档页面模板
     - `_news/` - 新闻和公告
         - `posts/YYYY-MM-DD-[title].md` - 带有日期前缀的 markdown 格式新闻
         - `index.js` - 生成的索引
-        - `index.html` - 新闻页面模板
+        - `_index.html` - 新闻页面模板
     - `_static/`
         - `lib/` - 引用的外部前端库
-        - `fancy/{header|footer}.html` - fancyindex 页面模板
+        - `fancy/_{header|footer}.html` - fancyindex 页面模板
         - `common.{css|js}` - 公共页面样式和脚本
         - `{main|docs|news|fancy}.{css|js}` - 特定页面样式和脚本
         - `logo.svg` - 网站图标
-        - `{header|footer}.html` - HTML 页面模板
-    - `index.html` - 主页模板
+        - `_{header|footer}.html` - HTML 页面模板
+    - `_index.html` - 主页模板
 - `index.py` - 用于生成 `_{doc|new}s/index.js`
 - `LICENSE.txt` - GNU AGPLv3 许可证文本
 - `README(.zh).md` - 本文档

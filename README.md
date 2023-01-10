@@ -26,17 +26,14 @@ Create documentation or news posts in `_{docs|news}/posts` with the naming conve
 Suggested NGINX configuration:
 
 ```
-index index$arg_noscript.html;
+index _index$arg_noscript.html;
 #autoindex on;
 fancyindex on;
 fancyindex_exact_size off;
 fancyindex_time_format "%Y-%m-%d %H:%M";
-fancyindex_header /_static/fancy/header.html;
-fancyindex_footer /_static/fancy/footer.html;
+fancyindex_header /_static/fancy/_header.html;
+fancyindex_footer /_static/fancy/_footer.html;
 
-location = /index.html {
-    ssi on;
-}
 location ^~ /_ {
     ssi on;
     expires -1;
@@ -55,19 +52,19 @@ location ^~ /_ {
     - `_docs/` - documentations of mirrors
         - `posts/[mirror].{en|zh}.md` - markdown of docs with language suffix
         - `index.js` - generated index
-        - `index.html` - page template for documentations
+        - `_index.html` - page template for documentations
     - `_news/` - news and announcements
         - `posts/YYYY-MM-DD-[title].md` - markdown of news with date prefix
         - `index.js` - generated index
-        - `index.html` - page template for news
+        - `_index.html` - page template for news
     - `_static/`
         - `lib/` - external libraries
-        - `fancy/{header|footer}.html` - template for fancyindex module
+        - `fancy/_{header|footer}.html` - template for fancyindex module
         - `common.{css|js}` - common style sheet and scripts
         - `{main|docs|news|fancy}.{css|js}` - page-specific ones
         - `logo.svg` - website logo
-        - `{header|footer}.html` - HTML page template
-    - `index.html` - template of home page
+        - `_{header|footer}.html` - HTML page template
+    - `_index.html` - template of home page
 - `index.py` - generate `_{doc|new}s/index.js`
 - `LICENSE.txt` - GNU AGPLv3 license text
 - `README(.zh).md` - this document
