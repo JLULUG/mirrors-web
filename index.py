@@ -4,7 +4,6 @@ import os
 import re
 import json
 
-badges: dict[str, int] = {}
 docs: dict[str, dict[str, int]] = {}
 news: list[dict[str, str]]= []
 
@@ -28,8 +27,6 @@ if __name__ == '__main__':
         }
     print(f'Found {sum([ len(x) for x in docs.values() ])} posts')
     print(f'Found {len(docs)} languages: {list(docs.keys())}')
-    docs['_badges'] = badges
-    print(f'Found {len(docs["_badges"])} badges')
     with open('_docs/index.json', 'w', encoding='utf-8') as index:
         json.dump(docs, index)
 

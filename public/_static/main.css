@@ -12,14 +12,15 @@ main table td:nth-child(1) {
     font-family: 'Consolas', 'Courier New', Courier, monospace;
     font-weight: 700;
 }
-main table tbody tr.syncing {
-    background-color: hsla(194deg 70% 70% / 33%);
-}
+/* order matters! */
 main table tbody tr.failed {
     background-color: hsla(0deg 57% 70% / 33%);
 }
 main table tbody tr.paused {
     background-color: hsla(29deg 84% 70% / 33%);
+}
+main table tbody tr.syncing {
+    background-color: hsla(194deg 70% 70% / 33%);
 }
 main table tbody tr svg {
     width: 1em;
