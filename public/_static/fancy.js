@@ -6,4 +6,8 @@ if (new URL(location).searchParams.has('noscript')) {
     location.replace(redirect)
 }
 
-var app = {}
+var app = {
+    created: function () {
+        this.title = document.getElementsByTagName('h2')[0].textContent.slice('You are at '.length)
+    }
+}

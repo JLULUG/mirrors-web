@@ -1,8 +1,8 @@
 <!--# set var="page" value="news" -->
 <!--# include file="/_static/_header.html" -->
-<main v-if="current" v-html="content">
+<main id="content" v-show="current">
 </main>
-<main id="list" v-if="!current">
+<main id="list" v-show="!current">
     <h2>{{ _.news }}</h2>
     <table>
         <thead>
@@ -21,10 +21,10 @@
 </main>
 <script>
     i18n.en.news = 'News'
-    i18n.en.tableTitle = 'Title'
-    i18n.en.tableDate = 'Date'
     i18n.zh.news = '镜像站新闻'
+    i18n.en.tableTitle = 'Title'
     i18n.zh.tableTitle = '标题'
+    i18n.en.tableDate = 'Date'
     i18n.zh.tableDate = '发布日期'
 </script>
 <script src="/_static/lib/marked.min.js"></script>

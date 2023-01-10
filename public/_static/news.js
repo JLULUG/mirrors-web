@@ -2,24 +2,34 @@
 
 var app = {
     data: {
-        news: news,
         current: '',
-        content: '',
+        news: [],
     },
     methods: {
-        update: async function (post) {
-            this.current = post
-            if (!this.current) return
-            let response = await fetch('./' + post + '.md')
-            this.content = marked.parse(await response.text())
-            location.hash = '#' + post
+        update: async function () {
+            this.current = location.hash.slice(1)
+            if (!this.current) {
+                this.title = this._.news
+                return
+            }
+            let response = await (
+                await fetch('./' + this.current + '.md')
+            ).text()
+            document.getElementById('content').replaceChildren(
+                document.createRange().createContextualFragment(
+                    marked.parse(response)
+                )
+            )
             window.scrollTo(0, 0)
-        }
+            this.$nextTick(function () {
+                this.title = document.getElementsByTagName('h2')[0].textContent
+            })
+        },
     },
-    created: function () {
-        this.update(location.hash.slice(1))
+    created: async function () {
+        this.news = await (await fetch('/_news/index.json')).json()
         window.addEventListener('hashchange', function () {
-            app.update(location.hash.slice(1))
+            app.update()
         })
     },
 }

@@ -2,6 +2,7 @@
 
 import os
 import re
+import json
 
 badges: dict[str, int] = {}
 docs: dict[str, dict[str, int]] = {}
@@ -29,8 +30,8 @@ if __name__ == '__main__':
     print(f'Found {len(docs)} languages: {list(docs.keys())}')
     docs['_badges'] = badges
     print(f'Found {len(docs["_badges"])} badges')
-    with open('_docs/index.js', 'w', encoding='utf-8') as index:
-        index.write(f'const docs = {repr(docs)}\n')
+    with open('_docs/index.json', 'w', encoding='utf-8') as index:
+        json.dump(docs, index)
 
     print('Generating news index...')
     for file in os.scandir('_news'):
@@ -49,5 +50,5 @@ if __name__ == '__main__':
             })
     news.sort(reverse=True, key=lambda p: p['name'])
     print(f'Found {len(news)} posts')
-    with open('_news/index.js', 'w', encoding='utf-8') as index:
-        index.write(f'const news = {repr(news)}\n')
+    with open('_news/index.json', 'w', encoding='utf-8') as index:
+        json.dump(news, index)

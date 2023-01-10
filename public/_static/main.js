@@ -4,8 +4,8 @@ var app = {
     data: {
         mirrors: [],
         relOrAbs: {},
-        docsAll: docs,
-        news: news,
+        docsAll: {'en': {}, 'zh': {}},
+        news: [],
         modal: false,
         distros: typeof distros === 'undefined' ? [] : distros,
         current: {},
@@ -49,9 +49,11 @@ var app = {
             this.mirrors = mirrors
         },
     },
-    created: function () {
+    created: async function () {
         setInterval(this.updateMirrors, 60 * 1000)
         this.updateMirrors()
+        this.docsAll = await (await fetch('/_docs/index.json')).json()
+        this.news = await (await fetch('/_news/index.json')).json()
         window.addEventListener('keydown', (e) => {
             if (e.key == 'Escape') {
                 app.modal = false

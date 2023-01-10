@@ -2,30 +2,35 @@
 
 var app = {
     data: {
-        docsAll: docs,
-        current: location.hash.slice(1),
-        content: '',
+        current: '',
+        docsAll: {'en': {}, 'zh': {}},
     },
     computed: {
         docs: function () { return this.docsAll[this.lang] },
     },
     methods: {
-        switchLang: function (change = true) {
-            if (!this.docs[this.current]) this.current = '' // different availablity across lang
-            this.update(this.current)
-        },
-        update: async function (doc) {
-            this.current = doc
-            if (!doc) doc = 'index'
-            let response = await fetch('./' + doc + '.' + this.lang + '.md')
-            this.content = marked.parse(await response.text())
-            location.hash = '#' + doc
+        update: async function () {
+            this.current = location.hash.slice(1)
+            if (!this.docs[this.current]) this.current = 'index'
+            location.hash = '#' + this.current
+            let response = await (
+                await fetch('./' + this.current + '.' + this.lang + '.md')
+            ).text()
+            document.getElementById('content').replaceChildren(
+                document.createRange().createContextualFragment(
+                    marked.parse(response)
+                )
+            )
             window.scrollTo(0, 0)
+            this.$nextTick(function () {
+                this.title = document.getElementsByTagName('h2')[0].textContent
+            })
         }
     },
-    created: function () {
+    created: async function () {
+        this.docsAll = await (await fetch('/_docs/index.json')).json()
         window.addEventListener('hashchange', function () {
-            app.update(location.hash.slice(1))
+            app.update()
         })
     }
 }
