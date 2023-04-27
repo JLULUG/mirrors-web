@@ -28,6 +28,7 @@ main table tbody tr svg {
     margin-bottom: -0.2em;
 }
 main table tbody tr svg.badge {
+    font-size: 0.8em;
     margin-bottom: -0.4em;
     fill: orange;
 }
