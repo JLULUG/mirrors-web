@@ -29,8 +29,21 @@ main table tbody tr svg {
 }
 main table tbody tr svg.badge {
     font-size: 0.8em;
-    margin-bottom: -0.4em;
+}
+@media screen and (prefers-color-scheme: dark) {
+    main table tbody tr svg.badge {
+        filter: brightness(80%);
+    }
+}
+main table tbody tr svg.official {
     fill: orange;
+    margin-bottom: -0.3em;
+}
+main table tbody tr svg.experimental {
+    fill: lightblue;
+}
+main table tbody tr svg.deprecated {
+    fill: lightgrey;
 }
 main table tbody tr svg.help {
     fill: var(--theme-link);
