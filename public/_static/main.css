@@ -45,6 +45,9 @@ main table tbody tr svg.experimental {
 main table tbody tr svg.deprecated {
     fill: lightgrey;
 }
+main table tbody tr svg.warning-icon {
+    fill: crimson;
+}
 main table tbody tr svg.help {
     fill: var(--theme-link);
 }
@@ -165,7 +168,7 @@ main aside p {
     }
 }
 @media screen and (max-width: 568px) {
-    main table tr :nth-child(3) {
+    main table tr >:nth-child(3) {
         display: none;
     }
     #modal >div {
