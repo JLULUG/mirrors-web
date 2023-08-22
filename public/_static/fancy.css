@@ -17,6 +17,14 @@ main table#list td:nth-child(1) {
     font-weight: 700;
 }
 
+/* fancy.js will add `tzlocal` class after localizing dates */
+main table#list thead th:nth-child(3)::after {
+    content: ' (UTC)';
+}
+main table#list.tzlocal thead th:nth-child(3)::after {
+    content: '';
+}
+
 @media screen and (max-width: 1920px) {
 }
 @media screen and (max-width: 1024px) {
