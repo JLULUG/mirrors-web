@@ -45,6 +45,9 @@ main table tbody tr svg.experimental {
 main table tbody tr svg.deprecated {
     fill: lightgrey;
 }
+main table tbody tr svg.removing {
+    fill: crimson;
+}
 main table tbody tr svg.warning-icon {
     fill: crimson;
 }
