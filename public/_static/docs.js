@@ -10,9 +10,7 @@ var app = {
     },
     methods: {
         update: async function () {
-            this.current = location.hash.slice(1)
-            if (!this.docs[this.current]) this.current = 'index'
-            location.hash = '#' + this.current
+            this.current = location.hash.slice(1) || 'index'
             let response = await (
                 await fetch('./' + this.current + '.' + this.lang + '.md')
             ).text()
