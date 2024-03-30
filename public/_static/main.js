@@ -3,7 +3,6 @@
 var app = {
     data: {
         mirrors: [],
-        relOrAbs: {},
         docsAll: {'en': {}, 'zh': {}},
         news: [],
         modal: false,
@@ -40,18 +39,11 @@ var app = {
         absTime: function (ts) { // this either
             return new Date((ts - new Date().getTimezoneOffset() * 60) * 1000).toISOString().slice(0, 16).replace('T', ' ')
         },
-        flipAll: function () {
-            for (let i in this.relOrAbs) this.relOrAbs[i] ^= 1
-        },
         updateMirrors: async function () {
             let response = await fetch('/_api/shine.json')
             let mirrors = await response.json()
             mirrors.sort((a, b) => { // case insensitive sort
                 return -1 + 2 * (a.name.toLowerCase() > b.name.toLowerCase())
-            })
-            mirrors.forEach((mirror) => {
-                // responsive set
-                this.$set(this.relOrAbs, mirror.name, this.relOrAbs[mirror.name] || false)
             })
             this.mirrors = mirrors
         },

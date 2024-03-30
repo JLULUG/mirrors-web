@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th>{{ _.tableName }}</th>
-                    <th @click="flipAll">{{ _.tableLast }}</th>
-                    <th @click="flipAll">{{ _.tableNext }}</th>
+                    <th>{{ _.tableLast }}</th>
+                    <th>{{ _.tableNext }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,8 +60,8 @@
                         </span>
                     </td>
                     <td>
-                        <span @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.last_success)">
-                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.last_success) }}
+                        <span :title="absTime(mirror.last_success)">
+                            {{ relTime(mirror.last_success) }}
                         </span>
                         <span v-if="!mirror.on && !mirror.active" :title="_.iconPaused">
                             <svg xmlns="http://www.w3.org/2000/svg" class="paused" viewBox="0 0 512 512">
@@ -75,8 +75,8 @@
                         </span>
                     </td>
                     <td>
-                        <span v-if="mirror.on && !mirror.active" @click="relOrAbs[mirror.name]^=1" :title="(relOrAbs[mirror.name]?relTime:absTime)(mirror.next_schedule)">
-                            {{ (relOrAbs[mirror.name]?absTime:relTime)(mirror.next_schedule) }}
+                        <span v-if="mirror.on && !mirror.active" :title="absTime(mirror.next_schedule)">
+                            {{ relTime(mirror.next_schedule) }}
                         </span>
                         <span v-if="mirror.active" :title="_.iconSyncing">
                             <svg xmlns="http://www.w3.org/2000/svg" class="syncing" viewBox="0 0 512 512">
