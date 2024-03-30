@@ -35,6 +35,11 @@ main table tbody tr svg.badge {
         filter: brightness(80%);
     }
 }
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
 main table tbody tr svg.official {
     fill: orange;
     margin-bottom: -0.3em;
@@ -50,6 +55,7 @@ main table tbody tr svg.removing {
 }
 main table tbody tr svg.warning-icon {
     fill: crimson;
+    animation: blinker 2s linear infinite;
 }
 main table tbody tr svg.help {
     fill: var(--theme-link);
