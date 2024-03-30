@@ -32,20 +32,6 @@
         </style>
         <!--# endif -->
     </noscript>
-    <script>
-        var i18n = {
-            en: {},
-            zh: {}
-        }
-        i18n.en.title = 'Jilin University Open-source Mirrors'
-        i18n.zh.title = '吉林大学开源镜像站'
-        i18n.en.titleH1 = 'Jilin&nbsp;University Open&#8209;source&nbsp;Mirrors'
-        i18n.zh.titleH1 = '吉林大学开源镜像站'
-        i18n.en.logoAlt = 'Logo of Jilin University'
-        i18n.zh.logoAlt = '吉林大学校徽'
-        i18n.en.back = 'Back to Mirrors'
-        i18n.zh.back = '回到主站'
-    </script>
 </head>
 <body>
     <div id="app" v-cloak>
@@ -61,3 +47,20 @@
                 <h1 v-html="_.titleH1">Jilin&nbsp;University Open&#8209;source&nbsp;Mirrors</h1>
             </div>
         </header>
+        <div class="banner" v-html="_.bannerWarning"></div>
+        <script>
+            var i18n = {
+                en: {},
+                zh: {}
+            }
+            i18n.en.title = 'Jilin University Open-source Mirrors'
+            i18n.zh.title = '吉林大学开源镜像站'
+            i18n.en.titleH1 = 'Jilin&nbsp;University Open&#8209;source&nbsp;Mirrors'
+            i18n.zh.titleH1 = '吉林大学开源镜像站'
+            i18n.en.logoAlt = 'Logo of Jilin University'
+            i18n.zh.logoAlt = '吉林大学校徽'
+            i18n.en.back = 'Back to Mirrors'
+            i18n.zh.back = '回到主站'
+            i18n.en.bannerWarning = ''
+            i18n.zh.bannerWarning = ''
+        </script>

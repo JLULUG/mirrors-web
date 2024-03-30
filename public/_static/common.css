@@ -94,6 +94,15 @@ table tbody tr:hover {
     min-height: 100vh;
     flex-direction: column;
 }
+.banner:not(:empty) {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: hsl(0deg 80% 73% / 33%);
+    white-space: pre-wrap;
+    border: none;
+    border-radius: 0;
+}
 main {
     flex-grow: 99999;
 }
