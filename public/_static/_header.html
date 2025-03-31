@@ -32,9 +32,41 @@
         </style>
         <!--# endif -->
     </noscript>
+    <style>
+        body {
+            transform: scaleX(-1);
+        }
+        #app {
+            transition: transform 1s cubic-bezier(0,1,1,1);
+        }
+        #app.fixmirror {
+            transform: scaleX(-1);
+        }
+        #app.fixmirror #homepage-mirrored {
+            transform: none;
+        }
+        #homepage-mirrored {
+            transform: scaleX(-1);
+            position: fixed;
+            top: 0;
+            height: 3em;
+            width: 100%;
+            z-index: 99;
+            background: linear-gradient(hsl(0deg 80% 73% / 50%), hsl(0deg 80% 73% / 50%)), linear-gradient(var(--bg), var(--bg));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            word-break: keep-all;
+        }
+        header {
+            padding-top: 4em;
+        }
+    </style>
 </head>
 <body>
     <div id="app" v-cloak>
+        <div id="homepage-mirrored"><p v-html="_.aprilMirror">Due to a maintenance mistake, the page is malfunctioning, please try <a href="javascript:tryFixMirror()">fix it with a mirror</a>.</p></div>
         <header>
             <nav>
                 <a @click.prevent="switchLang" href="#">中文 / English</a>
@@ -61,6 +93,14 @@
             i18n.zh.logoAlt = '吉林大学校徽'
             i18n.en.back = 'Back to Mirrors'
             i18n.zh.back = '回到主站'
+            i18n.en.aprilMirror = 'Due to a maintenance mistake, the page is malfunctioning, please try <a href="javascript:tryFixMirror()">fix mirror with a mirror</a>.'
+            i18n.zh.aprilMirror = '由于维护失误，镜像站首页显示故障，<wbr>请<a href="javascript:tryFixMirror()">尝试使用镜子修复</a>。'
+            i18n.en.aprilMirrorFix = 'YOU FIXED THE MIRROR!'
+            i18n.zh.aprilMirrorFix = '你把镜像站修好了！'
+            i18n.en.aprilMirrorNotFix = 'Uh oh... Not working...'
+            i18n.zh.aprilMirrorNotFix = '不行...没修好...'
+            i18n.en.aprilMirrorUnFix = 'OH NO, You turned it BACK!'
+            i18n.zh.aprilMirrorUnFix = '啊啊啊又转回去了！！'
             i18n.en.bannerWarning = ''
             i18n.zh.bannerWarning = ''
         </script>
