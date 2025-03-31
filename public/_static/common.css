@@ -98,7 +98,7 @@ table tbody tr:hover {
     margin-top: 1rem;
     padding: 0.5rem;
     text-align: center;
-    background-color: hsl(0deg 80% 73% / 33%);
+    background-color: hsl(0deg 80% 73% / 50%);
     white-space: pre-wrap;
     border: none;
     border-radius: 0;
