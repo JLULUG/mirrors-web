@@ -26,34 +26,5 @@
     <script src="/_static/<!--# echo var="page" -->.js"></script>
     <!--# endif -->
     <script src="/_static/common.js"></script>
-    <script>
-    //document.body.insertBefore(document.getElementById('homepage-mirrored'), document.body.firstChild);
-    if (sessionStorage.getItem('fixmirror')) {
-        document.getElementById('app').classList.add('fixmirror');
-    }
-    function tryFixMirror() {
-        if (document.getElementById('app').classList.contains('fixmirror')) {
-            if (sessionStorage.getItem('fixmirror')) {
-                document.getElementById('app').classList.remove('fixmirror');
-                sessionStorage.clear();
-                alert(app._.aprilMirrorUnFix);
-            }
-            return;
-        }
-        document.getElementById('app').classList.add('fixmirror');
-        if (Math.random() < 0.3) {
-            sessionStorage.setItem('fixmirror', true);
-            setTimeout(() => {
-                alert(app._.aprilMirrorFix);
-            }, 1000);
-        }
-        else {
-            setTimeout(() => {
-                document.getElementById('app').classList.remove('fixmirror');
-                alert(app._.aprilMirrorNotFix);
-            }, (Math.random()*4+4)*1000);
-        }
-    }
-    </script>
 </body>
 </html>
