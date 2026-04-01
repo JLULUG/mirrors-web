@@ -214,3 +214,4 @@ footer #logo {
         filter: brightness(1);
     }
 }
+@keyframes moveUp { from {transform: translateY(100vh);} to {transform: translateY(-100%);} }
